@@ -1,0 +1,15 @@
+Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    StrictHostKeyChecking no
+
+Host pi
+    User pi
+    Hostname 192.168.1.200
+    Port 22
+
+Host pi-docker
+    User pi-docker
+    Hostname 192.168.1.200
+    Port 2222

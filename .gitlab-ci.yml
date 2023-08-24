@@ -1,0 +1,34 @@
+###############################################################################
+#                         DO NOT MODIFY THIS BLOCK!                           #
+#           All docker pipelines will be automagically generated              #
+###############################################################################
+variables:
+  DOCKER_PIPELINES_YAML: .docker-pipelines-ci.yml
+stages:
+  - generate_docker_jobs
+  - trigger_docker_jobs
+  - update
+
+generate_pipelines:
+  stage: generate_docker_jobs
+  image: python:3.9-slim-buster
+  before_script:
+    - python3 -m pip install python-gitlab==3.4.0
+  script:
+    - python3 generate_docker_jobs.py $DOCKER_PIPELINES_YAML
+  artifacts:
+    paths:
+      - $DOCKER_PIPELINES_YAML
+
+trigger_pipelines:
+  stage: trigger_docker_jobs
+  trigger:
+    include:
+      - artifact: $DOCKER_PIPELINES_YAML
+        job: generate_pipelines
+    strategy: depend
+
+include:
+  - project: "ipb-team/robots/ipb-car/meta-workspace"
+    ref: master
+    file: ".templates/.gitlab-ci-submodule-update.yml"

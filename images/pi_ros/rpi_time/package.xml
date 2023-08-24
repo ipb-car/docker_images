@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rpi_time</name>
+  <version>0.0.1</version>
+  <description>
+    Pubblish the rpi clock time.           
+  </description>
+
+  <maintainer email="s6alricc@uni-bonn.de">Alessandro Riccardi</maintainer>
+  <license>MIT</license>
+
+  <depend>message_generation</depend>
+  <exec_depend>topic_tools</exec_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>
+

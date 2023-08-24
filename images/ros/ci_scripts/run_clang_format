@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# @file      clang_format.sh
+# @author    Ignacio Vizzo     [ivizzo@uni-bonn.de]
+#
+# Copyright (c) 2020 Ignacio Vizzo, all rights reserved
+set -e
+DIR="$(realpath $@)"
+
+echo "Running clang-format on all C++ sources from ${DIR}"
+
+sources=$(find ${DIR} -regextype posix-extended -regex \
+  ".*\.(cpp|cxx|cc|hpp|hxx|h)" |
+  grep -vE "^./(build)/")
+
+clang-format -Werror --dry-run --ferror-limit=1 -style=file ${sources}

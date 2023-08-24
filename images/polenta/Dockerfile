@@ -13,7 +13,7 @@ COPY etc /etc/
 COPY ./ros_entrypoint.sh /
 
 # Add normal sudo-user to container, passwordless
-RUN addgroup --gid $GROUP_ID $USER_NAME \
+RUN addgroup --gid $GROUP_ID $USER_NAME || true \
     && adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID $USER_NAME \
     && adduser $USER_NAME sudo \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \

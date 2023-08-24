@@ -1,5 +1,5 @@
 # Base image with almost everything but ROS installed
-FROM gitlab.ipb.uni-bonn.de:4567/ipb-team/robots/ipb-car/docker_images/ros
+FROM prbonn/ros:noetic
 LABEL maintainer="Ignacio Vizzo <ivizzo@uni-bonn.de>"
 ENV USER_NAME="ipb_car"
 ARG GROUP_ID=1000
